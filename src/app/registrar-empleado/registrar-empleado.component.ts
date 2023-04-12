@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Empleado } from '../empleado';
+import { EmpleadoService } from '../empleado.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-empleado',
@@ -7,8 +9,27 @@ import { Empleado } from '../empleado';
   styleUrls: ['./registrar-empleado.component.css']
 })
 export class RegistrarEmpleadoComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  
   empleado : Empleado = new Empleado()
+
+  constructor(private empleadoServicio : EmpleadoService, private router:Router){
+  }
+
+  ngOnInit(): void {
+  }
+
+  guardarEmpleado(){
+    this.empleadoServicio.registrarEmpleado(this.empleado).subscribe(dato =>  {
+      console.log(dato);
+      this.verListaEmpleados();
+    }, error => console.log(error))
+  }
+
+  verListaEmpleados(){
+    this.router.navigate(['/empleados'])
+  }
+
+  onSubmit(){
+    this.guardarEmpleado();
+  }
 }

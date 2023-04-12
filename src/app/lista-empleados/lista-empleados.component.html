@@ -12,6 +12,17 @@
             <td>{{empleado.nombre}}</td>
             <td>{{empleado.apellido}}</td>
             <td>{{empleado.email}}</td>
+            <td>
+                <button (click)= "actualizarEmpleado(empleado.id)" class="btn btn-info" >
+                        editar
+                </button>
+                <button (click)= "eliminarEmpleado(empleado.id)" class="btn btn-info" >
+                    eliminar
+                </button>
+                <button (click)= "verDetalles(empleado.id)" class="btn btn-primay" >
+                    ver detalles
+            </button>
+            </td>
         </tr>
     </tbody>
 </table>
